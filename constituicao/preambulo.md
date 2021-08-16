@@ -1,0 +1,19 @@
+# Preâmbulo
+Nós, o Povo de Angola, através dos nossos lídimos representantes, Deputados da Nação livremente eleitos nas eleições parlamentares de Setembro de 2008;
+Cientes de que essas eleições se inserem na longa tradição de luta do povo angolano pela conquista da sua cidadania e independência, proclamada no dia 11 de Novembro de 1975, data em que entrou em vigor a primeira Lei Constitucional da história de Angola, corajosamente preservada graças aos sacrifícios colectivos para defender a Soberania Nacional e a integridade territorial do País;
+Tendo recebido, por via da referida escolha popular e por força do disposto no artigo 158.º da Lei Constitucional de 1992, o nobre e indeclinável mandato de proceder à elaboração e aprovação da Constituição da República de Angola;
+Cônscios da grande importância e magna valia de que se reveste a feitura e adopção da Lei Primeira e Fundamental do Estado e da sociedade angolana;
+Destacando que a Constituição da República de Angola se filia e enquadra directamente na já longa e persistente luta do povo angolano, primeiro, para resistir à ocupação colonizadora, depois para conquistar a independência e a dignidade de um Estado Soberano e, mais tarde, para edificar, em Angola, um Estado Democrático de Direito e uma sociedade justa;
+Invocando a memória dos nossos antepassados e apelando à sabedoria das lições da nossa história comum, das nossas raízes seculares e das culturas que enriquecem a nossa unidade;
+Inspirados pelas melhores lições da tradição africana — substrato fundamental da cultura e da identidade angolanas;
+Revestidos de uma cultura de tolerância e profundamente comprometidos com a reconciliação, a igualdade, a justiça e o desenvolvimento;
+Decididos a construir uma sociedade fundada na equidade de oportunidades, no compromisso, na fraternidade e na unidade na diversidade;
+Determinados a edificar, todos juntos, uma sociedade justa e de progresso que respeita a vida, a igualdade, a diversidade e a dignidade das pessoas;
+Relembrando que a actual Constituição representa o culminar do processo de transição constitucional iniciado em 1991, com a aprovação, pela Assembleia do Povo, da Lei n.º 12/91, que consagrou a democracia multipartidária, as garantias dos direitos e liberdades fundamentais dos cidadãos e o sistema económico de mercado, mudanças aprofundadas, mais tarde, pela Lei de Revisão Constitucional n.º 23/92;
+Reafirmando o nosso comprometimento com os valores e princípios fundamentais da Independência, Soberania e Unidade do Estado Democrático de Direito, do pluralismo de expressão e de organização política, da separação e equilíbrio de poderes dos Órgãos de Soberania, do sistema económico de mercado e do respeito e garantia dos direitos e liberdades fundamentais do ser humano, que constituem as traves mestras que suportam e estruturam a presente Constituição;
+Conscientes de que uma Constituição como a presente é, pela partilha dos valores, princípios e normas nela plasmados, um importante factor de unidade nacional e uma forte alavanca para o desenvolvimento do Estado e da sociedade;
+Empenhando-nos, solenemente, no cumprimento estrito e no respeito pela presente Constituição e aspirando a que a mesma postura seja a matriz do comportamento dos cidadãos, das forças políticas e de toda a sociedade angolana;
+Assim, invocando e rendendo preito à memória de todos os heróis e de cada uma das angolanas e dos angolanos que perderam a vida na defesa da Pátria;
+Fiéis aos mais altos anseios do povo angolano de estabilidade, dignidade, liberdade, desenvolvimento e edificação de um país moderno, próspero, inclusivo, democrático e socialmente justo;
+Comprometidos com o legado para as futuras gerações e no exercício da nossa soberania;
+Aprovamos a presente Constituição como Lei Suprema e Fundamental da República de Angola.
