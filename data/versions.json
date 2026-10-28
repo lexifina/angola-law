@@ -1,0 +1,47 @@
+{
+ "country": "AO",
+ "acts": [
+  {
+   "slug": "constituicao",
+   "short": "CRA",
+   "title": "Constituição da República de Angola",
+   "url": "https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o",
+   "versions": [
+    {
+     "from": "2021-08-16",
+     "units": 257,
+     "source_url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaConstituição190102230948141675284494.pdf",
+     "sha256": "8911c2d518f0814abeab7262d168f3b53ba6f80343095bfe9fd287ea81d6c3a0"
+    }
+   ]
+  },
+  {
+   "slug": "codigo-penal",
+   "short": "CP",
+   "title": "Código Penal Angolano",
+   "url": "https://governo.gov.ao/documentos/legisla%C3%A7%C3%A3o",
+   "versions": [
+    {
+     "from": "2021-02-09",
+     "units": 474,
+     "source_url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaLegislação982801221101131643367673.pdf",
+     "sha256": "e7d06cf57d3a2f2b4ba71af925849376424b0a26d8154aed0ad1adb791274717"
+    }
+   ]
+  },
+  {
+   "slug": "codigo-processo-penal",
+   "short": "CPP",
+   "title": "Código do Processo Penal Angolano",
+   "url": "https://governo.gov.ao/documentos/legisla%C3%A7%C3%A3o",
+   "versions": [
+    {
+     "from": "2021-02-09",
+     "units": 605,
+     "source_url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaLegislação982801221101131643367673.pdf",
+     "sha256": "e7d06cf57d3a2f2b4ba71af925849376424b0a26d8154aed0ad1adb791274717"
+    }
+   ]
+  }
+ ]
+}
