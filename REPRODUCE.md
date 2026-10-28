@@ -41,13 +41,13 @@ When a law gives no date of its own, the default rule applies: Not applied as a 
 
 `tools/build.py` turns the corpus into this history in one pass: one commit per law, on the day it took effect. The same corpus always gives the same commit hashes. `tools/check_repo.py` reads every version back from git and compares it with the corpus. `tools/on.py` shows the law as it stood on any date. The corpus format is described in `tools/SCHEMA.md`.
 
-- Corpus: sha256 `9c42b9a8ab52ac980be6c85452126e9ddb271051982b3e588aeebca8cff285af` (217170 bytes).
+- Corpus: sha256 `b9af826a47bc698e7449bfaf43439783197840f315adcc4d08243ee6683c56ea` (217165 bytes).
 - Builder blob hashes (`git hash-object`): `build.py` `900da0d33bfd1ef455267fb4dcef7961fd5acc9c`, `check.py` `5d719354ea4c62d240c93d2cae446307d81d9e81`, `on.py` `aff48cf1b68d50c7ba8f399ca32261871c301824`.
 - Python 3.14.4; git version 2.53.0.
 
 ## Checks
 
-1 versions of 1 acts read back from git on the day each took effect and on the day before: 0 mismatches. Trailers: 0 commits whose trailers git cannot parse. Health: 0 merge commits on main, 0 commit dates that go backwards, 0 commits dated after the build.
+Not yet run for this build.
 
 No second build of this corpus has been compared yet.
 
@@ -69,4 +69,4 @@ No model wrote, translated or corrected legal text. No model runs at build time.
 The commit messages are written by `build.py` from the source data.
 
 Model use at data-build time:
-- Claude Code (Claude Opus 5.5, claude-opus-5-5) wrote Lexifina's code, chose the sources and wrote the decisions. No model wrote, summarised or transformed legal text: the text is taken from the official PDFs by deterministic code.
+- Claude Code (Claude Opus 5.5, claude-opus-5-5) wrote Lexifina's code, chose the sources and wrote the decisions. No model wrote, summarised or transformed legal text.
