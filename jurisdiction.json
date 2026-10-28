@@ -1,0 +1,11 @@
+{
+  "path": "ao",
+  "code": "AO",
+  "name": "Angola",
+  "level": "country",
+  "repo": "https://github.com/lexifina/angola-law",
+  "build": "built: Constituição da República de Angola (1 version, 2021-08-16, the official republication)",
+  "register": "https://claude.ai/artifact/DdS9F6yqpPZtV2i7FGQhYZ",
+  "register_date": "2026-10-28",
+  "sources": 2
+}

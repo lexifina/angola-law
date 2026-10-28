@@ -1,0 +1,22 @@
+The legal texts come from official publications of the Republic of Angola:
+
+  Diário da República de Angola (Imprensa Nacional), I Série, n.º 154, 16 August 2021: Lei n.º 18/21 (Lei de
+  Revisão Constitucional) and the republication of the Constitution of the Republic of Angola it orders,
+  https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaConstituição190102230948141675284494.pdf
+  (linked from https://governo.gov.ao/documentos/constituição), retrieved 28 October 2026;
+  Diário da República de Angola, I Série, n.º 179, 11 November 2020: Lei n.º 38/20 (Código Penal Angolano) and
+  Lei n.º 39/20 (Código do Processo Penal Angolano),
+  https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaLegislação982801221101131643367673.pdf,
+  retrieved 28 October 2026.
+
+The Government's portal publishes no licence for these files. They are official legal texts; their copyright
+status is not confirmed here, and they are reproduced with the attribution above.
+
+Changes made by Lexifina: the text was converted to one Markdown file per provision, one paragraph per line;
+spacing, quotes and dashes were normalised; page numbers, running heads, footnotes and their markers were removed;
+headings were gathered in one structure file; and the text was arranged as git commits. The wording of the law was
+not changed. None of the publishers endorses this repository.
+
+Lexifina's own contributions (the arrangement of the history, the commit messages, the tables and the tools) are
+dedicated to the public domain under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode

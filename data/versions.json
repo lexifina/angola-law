@@ -1,0 +1,19 @@
+{
+ "country": "AO",
+ "acts": [
+  {
+   "slug": "constituicao",
+   "short": "CRA",
+   "title": "Constituição da República de Angola",
+   "url": "https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o",
+   "versions": [
+    {
+     "from": "2021-08-16",
+     "units": 257,
+     "source_url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaConstituição190102230948141675284494.pdf",
+     "sha256": "8911c2d518f0814abeab7262d168f3b53ba6f80343095bfe9fd287ea81d6c3a0"
+    }
+   ]
+  }
+ ]
+}

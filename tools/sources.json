@@ -1,0 +1,27 @@
+{
+ "constituicao": {
+  "url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaConstituição190102230948141675284494.pdf",
+  "what": "Diário da República, I Série, N.º 154, 16 August 2021: Lei n.º 18/21 (Lei de Revisão Constitucional) and the republication of the Constitution it orders (art. 4.º). Born-digital (Adobe InDesign) text layer. Linked from governo.gov.ao/documentos/constituição.",
+  "retrieved": "2026-10-28"
+ },
+ "codigo-penal": {
+  "url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaLegislação982801221101131643367673.pdf",
+  "what": "Diário da República, I Série, N.º 179, 11 November 2020: Lei n.º 38/20 (Código Penal Angolano) and Lei n.º 39/20 (Código do Processo Penal Angolano). Born-digital (Adobe InDesign) text layer. Linked from governo.gov.ao/documentos/legislação.",
+  "retrieved": "2026-10-28"
+ },
+ "codigo-processo-penal": {
+  "url": "https://plataformacipra.gov.ao/public/ficheiros/arquivos/Gov_AngolaLegislação982801221101131643367673.pdf",
+  "what": "Same Diário da República issue as codigo-penal (I Série, N.º 179, 11 November 2020).",
+  "retrieved": "2026-10-28"
+ },
+ "checks": {
+  "tc-edicao-2022": {
+   "url": "https://www.tribunalconstitucional.ao/media/d11gvf0z/edicao-especial-actualizada-2022.pdf",
+   "what": "Tribunal Constitucional, Constituição da República de Angola, Edição Especial Actualizada (February 2022). Text layer. Used only to cross-check the 2021 republication word by word; no text is taken from it."
+  },
+  "ts-acordao-6089-21": {
+   "url": "https://web.archive.org/web/20260606051758id_/https://tribunalsupremo.ao/wp-content/uploads/2023/09/ACORDAO-Proc.-n.o-6089.21-CALUNIA-E-DIFAMACAO.pdf",
+   "what": "Tribunal Supremo, Acórdão, Proc. n.º 6089/21: states that the Código Penal 'entrou em vigor a 9 de Fevereiro de 2021'. Internet Archive capture 2026-06-06 (the live file now answers 404)."
+  }
+ }
+}
