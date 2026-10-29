@@ -201,23 +201,22 @@ def find(paras, pred, start=0) -> int:
 
 def constitution() -> dict:
     src = SOURCES['constituicao']
-    pdf = cached(src['url'])
-    paras = paragraphs(page_lines(pdf))
+    paras = paragraphs(page_lines(cached(src['url'])))
     # The republication follows Lei 18/21's own articles and signatures: "CONSTITUIÇÃO DA REPÚBLICA DE ANGOLA",
-    # "Preâmbulo". It ends with the constituent assembly's approval formula, then the annexes, then the signatories.
-    s = find(paras, lambda p: p[0] == 'h' and p[1].lower() == 'preâmbulo')
+    # "Preâmbulo", the articles, the constituent assembly's approval formula, then Annexes I-III (each closed by the
+    # same formula), then the list of constituent legislators, which is not law text and is left out.
+    s = find(paras, lambda p: p[1] == 'Preâmbulo')
     e = find(paras, lambda p: p[1].startswith('Vista e aprovada pela Assembleia Constituinte'), s)
-    a = find(paras, lambda p: p[0] == 'h' and p[1].upper().startswith('ANEXO I'), e)
-    z = find(paras, lambda p: p[1].startswith('Raúl Augusto Lima') or p[1].startswith('LEGISLADORES')
-             or p[1].upper().startswith('DEPUTADOS'), a) if False else len(paras)
+    a = find(paras, lambda p: p[0] == 'h' and p[1] == 'ANEXO I', e)
+    last = max(i for i, p in enumerate(paras) if p[1].startswith('Vista e aprovada pela Assembleia Constituinte'))
+    z = last + 1
+    while z < len(paras) and paras[z][1].startswith('O Presidente da '):
+        z += 1
     units, _ = units_from(paras, s + 1, e, preamble=True)
-    # annexes: from ANEXO I up to the list of constituent legislators
-    end_annex = next((i for i in range(a, len(paras)) if re.match(r'(Legisladores|LEGISLADORES|Deputados Constituintes)', paras[i][1])), z)
-    ann, _ = units_from(paras, a, end_annex, preamble=False)
+    ann, _ = units_from(paras, a, z, preamble=False)
     units.update({k: v for k, v in ann.items() if k != 'estrutura'})
-    closing = [t for _, t in paras[e:a]]
     units['formula-final'] = {'label': 'Fórmula de aprovação', 'kind': 'final',
-                              'text': '# Fórmula de aprovação\n' + '\n'.join(closing) + '\n'}
+                              'text': '# Fórmula de aprovação\n' + '\n'.join(t for _, t in paras[e:a]) + '\n'}
     return units
 
 
