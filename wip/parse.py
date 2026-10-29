@@ -205,7 +205,7 @@ def constitution() -> dict:
     # The republication follows Lei 18/21's own articles and signatures: "CONSTITUIÇÃO DA REPÚBLICA DE ANGOLA",
     # "Preâmbulo", the articles, the constituent assembly's approval formula, then Annexes I-III (each closed by the
     # same formula), then the list of constituent legislators, which is not law text and is left out.
-    s = find(paras, lambda p: p[1] == 'Preâmbulo')
+    s = find(paras, lambda p: p[0] == 'h' and p[1].endswith('Preâmbulo'))
     e = find(paras, lambda p: p[1].startswith('Vista e aprovada pela Assembleia Constituinte'), s)
     a = find(paras, lambda p: p[0] == 'h' and p[1] == 'ANEXO I', e)
     last = max(i for i, p in enumerate(paras) if p[1].startswith('Vista e aprovada pela Assembleia Constituinte'))
