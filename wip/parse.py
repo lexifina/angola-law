@@ -41,7 +41,11 @@ def page_lines(pdf: Path) -> list[dict]:
         rows = []
         for b in pg.get_text('dict')['blocks']:
             for ln in b.get('lines', []):
-                spans = [s for s in ln['spans'] if s['size'] >= 7.5]  # 7 pt footnotes, 4-6 pt note markers
+                # 7 pt footnotes and 4-6 pt note markers (digits) are dropped; a small alphabetic span right after
+                # body text is an ordinal superscript ("n.os", "2.os") and is kept.
+                sp = ln['spans']
+                spans = [s for i, s in enumerate(sp) if s['size'] >= 7.5
+                         or (i > 0 and sp[i - 1]['size'] >= 7.5 and s['text'].strip().isalpha())]
                 text = ''.join(s['text'] for s in spans)
                 if not text.strip():
                     continue
@@ -67,7 +71,7 @@ def page_lines(pdf: Path) -> list[dict]:
 
 MARK = re.compile(r'^(\d+\.(?:\d+\.)*\s|\d+\.\s*\[|[a-z]{1,2}\)\s|[ivxlc]+\)\s|[ivxlc]+\.\s|—\s|-\s|\(\d+\)\s)')
 STRUCT = re.compile(r'^(LIVRO|PARTE|TÍTULO|CAPÍTULO|SECÇÃO|SUBSECÇÃO|DIVISÃO|ANEXO)\b', re.I)
-ARTICLE = re.compile(r'^ARTIGO\s+(\d+)\.\s*º\s*(?:-\s*([A-Z]))?\s*$')
+ARTICLE = re.compile(r'^ARTIGO\s+(\d+)\.\s*[º°]\s*(?:-\s*([A-Z]))?\s*$')  # 4 CPP headings print "°"
 
 
 def is_heading(r: dict) -> bool:
@@ -80,11 +84,17 @@ def is_heading(r: dict) -> bool:
     return r['bold']
 
 
-def join(a: str, b: str) -> str:
+def join(a: str, b: str, vocab: frozenset = frozenset()) -> str:
     if a.endswith('\xad'):
         return a[:-1] + b
     if a.endswith('-') and b.startswith('-'):
         return a + b[1:]
+    # A hard hyphen at the line end that only breaks a word ("exe-" / "cução"): joined without it when the whole word
+    # is printed somewhere in the same gazette; otherwise it is a compound ("político-" / "militar") and kept.
+    m = re.search(r'(\w+)-$', a)
+    n = re.match(r'([a-zà-ÿ]\w*)', b)
+    if m and n and (m.group(1) + n.group(1)).lower() in vocab:
+        return a[:-1] + b
     if a.endswith(('-', '—', '/')) and not a.endswith(' -'):
         return a + b
     return a + ' ' + b
@@ -102,8 +112,9 @@ def norm(s: str) -> str:
 def paragraphs(rows: list[dict]) -> list[tuple[str, str]]:
     """[(kind, text)] with kind 'h' (heading line, wrapped titles joined) or 'p' (one body paragraph)."""
     out: list[list] = []
+    vocab = frozenset(w.lower() for r in rows for w in re.findall(r'\w+', r['text'].replace('\xad', '')))
     for r in rows:
-        t = r['text'].rstrip(' ')
+        t = r['text'].rstrip()
         head = is_heading(r)
         if head:
             st = t.strip()
@@ -121,7 +132,7 @@ def paragraphs(rows: list[dict]) -> list[tuple[str, str]]:
         starts = 10 <= r['x0'] <= 18 or (r['x0'] > 18 and MARK.match(st) and not (out and out[-1][0] == 'p'
                                                                                 and out[-1][1].endswith('\xad')))
         if out and out[-1][0] == 'p' and not starts:
-            out[-1][1] = join(out[-1][1], st)
+            out[-1][1] = join(out[-1][1], st, vocab)
         else:
             out.append(['p', st, r['size']])
     return [(k, norm(t)) for k, t, _ in out if norm(t)]
