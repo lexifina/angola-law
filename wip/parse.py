@@ -166,7 +166,7 @@ def units_from(paras: list[tuple[str, str]], start: int, end: int, preamble: boo
                 pending.append(t)
             else:
                 pending.append(t)
-        elif cur is None and pending and pending[-1].upper().startswith('ANEXO'):
+        elif cur is None and pending and pending[0].upper().startswith('ANEXO'):
             n = len([u for u in units if u.startswith('anexo-')]) + 1
             cur = f'anexo-{n:02d}'
             units[cur] = {'label': pending[0].title() if False else ' — '.join(pending), 'kind': 'annex',
