@@ -71,10 +71,13 @@ ARTICLE = re.compile(r'^ARTIGO\s+(\d+)\.\s*º\s*(?:-\s*([A-Z]))?\s*$')
 
 
 def is_heading(r: dict) -> bool:
-    if r['size'] < 9.5:  # article number and article title lines are set in 8 pt
+    """Article numbers and titles are set in 8 pt; structural headings are centred, their titles bold."""
+    if r['size'] < 9.5:
         return True
-    gap_l, gap_r = r['x0'], 242 - r['x1']
-    return gap_l > 20 and gap_r > 20 and abs(gap_l - gap_r) < 14
+    t = r['text'].strip()
+    if r['x0'] > 20 and STRUCT.match(t) and len(t) < 40:
+        return True
+    return r['bold']
 
 
 def join(a: str, b: str) -> str:
