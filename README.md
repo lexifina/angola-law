@@ -1,82 +1,88 @@
 # Angola: law history in git
 
+
+The law of Angola as a git history: one file per provision, one commit per version on the day it took effect, and the act that made each change as the commit's author. `git blame` names the act behind every paragraph; `git log` lists every change to an article; picking a date gives the text in force that day.
+
 Part of [lexifina/global-law](https://github.com/lexifina/global-law), one git history for every country's law: this is Angola's national law, which global-law reads at `angola/national/acts/`.
 
-The law of Angola as a git history. Each provision is one file, each law gets one commit on the day it took effect, and the law that made each change is the commit's author. `git blame` names the law behind every paragraph, `git log` lists every change to an article, and `tools/vigente_em.py` gives the text in force on any day.
+**What is in it now:** the Constitution (Constituição da República de Angola), in one version: the official republication of 16 August 2021 ordered by the constitutional revision Lei n.º 18/21, with its articles 1.º to 244.º and the 7 added with a letter (such as 107.º-A), the preamble, the three annexes and the approval formula. [`constituicao/README.md`](constituicao/README.md) lists every provision.
 
-It follows the shared design of [lexifina/global-law](https://github.com/lexifina/global-law), which places it at `ao/`.
+Each provision is one file in `constituicao/` (`art-076.md` is Article 76, Direito ao trabalho; `art-107-a.md` is Article 107-A); the headings (Título, Capítulo, Secção) are gathered in [`constituicao/estrutura.md`](constituicao/estrutura.md), each naming the article it precedes.
 
-**What is in it now**
+The text is in Portuguese, as the Diário da República prints it. An English translation is not part of this record.
 
-| Folder | Act | Versions | History |
-| --- | --- | ---: | --- |
-| `constituicao/` | Constituição da República de Angola | 1 | The official republication of 16 August 2021 (Diário da República, I Série, n.º 154), ordered by the constitutional revision Lei n.º 18/21 and in force that day: 244 articles, 7 articles added with a letter (107.º-A, 116.º-A, 132.º-A, 198.º-A, 200.º-A, 212.º-A, 241.º-A), the preamble, the three annexes and the approval formula |
-
-The per-act `README.md` in each folder lists every provision.
-
-**Why the Constitution has one version.** The Constitution of 2010 was published in the Diário da República of 5 February 2010, which is available only as a scanned image, and this record does not transcribe scans. Lei n.º 18/21, the only revision so far, prints only the new wording of the provisions it changes ("1. […]" for the paragraphs it keeps), so the 2010 wording of the changed provisions is not available as text either. So the Constitution enters the history once, on the day of the official republication, credited to the publisher as the oldest version available; its commit names the Constitution of 2010 and Lei n.º 18/21 as the laws that produced that text. The Gazette's own footnotes mark 26 provisions "Alterado", 7 "Aditado" and 6 "Revogado" by Lei n.º 18/21; those notes are left out of the text.
-
-**What is being prepared.** The Código Penal (Lei n.º 38/20) and the Código do Processo Penal (Lei n.º 39/20), both in force 9 February 2021, are parsed from the same kind of born-digital Gazette but are not on `main`: the Código Penal was amended by Lei n.º 12/24, de 4 de Julho, which we have not found with a text layer, and the later history of the Código do Processo Penal has not yet been checked.
-
-## A lawyer's questions as git commands
+## Questions as git commands
 
 | Question | Command |
 | --- | --- |
-| What did art. 109.º say on 1 January 2022? | `python tools/vigente_em.py 2022-01-01 constituicao 109` |
-| The same, with raw git (bash) | `git show $(git rev-list -1 --before="2022-01-01T23:59:59Z" main -- constituicao/art-109.md):constituicao/art-109.md` |
-| The same, in PowerShell | `$r = git rev-list -1 --before="2022-01-01T23:59:59Z" main -- constituicao/art-109.md; git show "$($r):constituicao/art-109.md"` |
-| Which law wrote each paragraph of art. 109.º? | `git blame constituicao/art-109.md` |
-| Every change to an article, word by word | `git log -p --word-diff constituicao/art-109.md` |
-| Every law in the record, in order | `git log --reverse --format="%ad %an" --date=short main` |
-| The whole Constitution on a date | `python tools/vigente_em.py 2022-01-01 constituicao` |
-| Where an article sits (title, chapter, section) | `constituicao/estrutura.md` |
+| Every change to Article 76 of the Constitution (the right to work) | `git log -p --word-diff -- constituicao/art-076.md` |
+| Which act wrote each paragraph of Article 76? | `git blame constituicao/art-076.md` |
+| Every version of Article 76, with the day each took effect | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- constituicao/art-076.md` |
+| Article 76 as in force on 1 January 2022 | `python tools/vigente_em.py 2022-01-01 constituicao 76` |
 
-After a rebuild, refresh tags with `git fetch --force --tags`: a plain fetch keeps stale tags.
+**Outside git**, we also host this record publicly, for free:
+
+- **[Ask Claude about Angolan law](https://global-law.lexifina.com/v1/try_claude?country=angola)**: opens Claude with a first question ready.
+- **[Ask ChatGPT](https://global-law.lexifina.com/v1/try_chatgpt?country=angola)**: the same question in ChatGPT.
+- **[Call the API in your browser](https://global-law.lexifina.com/v1/search_law?query=f%C3%A9rias&jurisdictions=angola)**: a search of Angolan law for "férias" (annual leave), returned as JSON. See the [documentation here](https://lexifina.com/api/global-law).
+
+Both assistants read the record through the free Global law connector (MCP, `https://global-law.lexifina.com/mcp`); the first time, the chat gives you the link that adds it. Ask in Portuguese or in English.
+
+**Host it yourself easily.** All it takes is git and Python, and the tools run on your machine:
+
+```sh
+git clone --depth 1 https://github.com/lexifina/global-law && cd global-law
+python3 tools/countries.py add angola/national/acts
+python3 tools/law.py show 2026-01-01 angola/national/acts/constituicao/art-076.md
+```
+
+Opened in Claude Code, Cursor, VS Code or Codex, the clone also starts a local MCP server with the same tools ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
 
 ## Dates
 
-- Each commit is dated at **noon, Africa/Luanda, on the day the change took effect**. The day is also in the `In-force:` trailer, which the tools read; enactment and publication dates are trailers too.
-- **The day comes from the law's own clause.** Lei n.º 18/21, art. 6.º: "A presente Lei de Revisão Constitucional entra em vigor à data da sua publicação", and it was published on 16 August 2021.
-- `--before="YYYY-MM-DD"` alone uses your clock's time of day, so a law that took effect that day may be missed before noon. Use `T23:59:59Z` as above, or the tool.
+Each commit is dated at noon, Africa/Luanda, on the day the version took effect, and carries it in its `In-force:` trailer:
+
+- the day comes from the in-force clause of the law that made the version: Lei n.º 18/21, artigo 6.º, puts the revision in force on its publication, 16 August 2021;
+- `tools/vigente_em.py` picks the version by that trailer, not by the commit date.
+
+The one version is credited to the publisher, Imprensa Nacional (Diário da República de Angola), as the oldest version available, and its commit names the Constitution of 2010 and Lei n.º 18/21 as the laws that produced the text. A later change will be credited to the law that made it; the committer is always Lexifina.
 
 ## How it is checked
 
-- Every version is read back from git on the day it took effect and on the day before (`tools/check_repo.py`); both must match `corpus.json`. Results are in `REPRODUCE.md`.
-- **Against a second official edition:** every article, the preamble, the annexes and the approval formula were compared word for word with the Tribunal Constitucional's *Edição Especial Actualizada* (2022). They agree, apart from five places where the two editions differ (arts. 36.º, 42.º, 173.º, 174.º and 242.º); the Gazette's wording is kept, and REPRODUCE.md lists each one.
-- The repository is rebuilt from the same data a second time and must give identical hashes.
-
-## What "author" means
-
-The author of a commit is the law that made the change, with an e-mail address that cannot exist, so `git blame` and `git log --author` name laws. The committer is always Lexifina. Where a version is not the act as enacted, as with the Constitution here, the first commit is credited to the publisher (Imprensa Nacional) as the oldest version available. Blame credits whole lines (one paragraph per line); use `git log -p --word-diff` to see exactly which words a change made.
+- `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before, and both must match the corpus: 0 mismatches. The results are in [`REPRODUCE.md`](REPRODUCE.md).
+- Every article, the preamble, the annexes and the approval formula were compared word for word with the Tribunal Constitucional's *Edição Especial Actualizada* (2022). They agree apart from five places where the two editions differ (artigos 36.º, 42.º, 173.º, 174.º and 242.º); the Gazette's wording is kept, and `REPRODUCE.md` lists each one.
+- History is append-only: no merge commits, no commit dated in the future, and every commit's trailers parse.
 
 ## What it does not show
 
-- **The Constitution of 2010 as first published**, and so the words Lei n.º 18/21 replaced (see above).
-- **Headings** (Título, Capítulo, Secção) are not in the article files; they are gathered in `estrutura.md`, each line naming the article it precedes.
-- **The Gazette's footnotes** ("Alterado pelo artigo 1.º da Lei n.º 18/21 …") and the list of constituent legislators printed after the annexes.
-- **No OCR.** Texts published only as scanned images, such as the data protection law (Lei n.º 22/11), are not included.
-
-## How it is built
-
-Lexifina reads the sources listed here and records each act's dated versions, and the laws that made each change, in one corpus file. `tools/build.py` writes this repository from that file, and the same corpus always gives the same commit hashes; `REPRODUCE.md` gives the details and the checks. A model (Claude) wrote Lexifina's code; it wrote no legal text, and no model runs when the history is built.
+- **The Constitution of 2010 as first published**, and so the words Lei n.º 18/21 replaced. The Diário da República of 5 February 2010 is available only as a scanned image, which this record does not transcribe, and Lei n.º 18/21 prints only the new wording of the provisions it changes.
+- **Any other act yet.** The Código Penal (Lei n.º 38/20) and the Código do Processo Penal (Lei n.º 39/20) are built on the `preview` branch but held back from `main`: the Código Penal was amended by Lei n.º 12/24, not found with a text layer, and the later history of the Código do Processo Penal is not yet checked. Texts published only as scans, such as the data protection law (Lei n.º 22/11), are not included.
+- **The Gazette's footnotes**, which mark 26 provisions "Alterado", 7 "Aditado" and 6 "Revogado" by Lei n.º 18/21, and the list of constituent legislators printed after the annexes.
 
 ## Sources
 
-| Source | What it gives | Used for |
-| --- | --- | --- |
-| [Government of Angola, legislation portal](https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o) | Born-digital PDFs of Diário da República issues (files on plataformacipra.gov.ao) | The text and dates |
-| [Tribunal Constitucional](https://www.tribunalconstitucional.ao) | *Constituição da República de Angola, Edição Especial Actualizada* (2022) | A word-for-word cross-check only |
-| [Ministry of Justice legislation](https://minjusdh.gov.ao/web/documentos?type=Legisla%C3%A7%C3%A3o) | Official legislation, not consolidated | Probed; not used |
-| Imprensa Nacional (imprensanacional.gov.ao) | The Diário da República | Did not answer from our machine |
-
-Research guides that cover every country: [GlobaLex](https://www.nyulawglobal.org/globalex/) and the [Law Library of Congress Guide to Law Online](https://www.loc.gov/research-centers/law-library-of-congress/researcher-resources/guide-to-law-online/).
+| Source | Kind | Past versions | Notes |
+| --- | --- | --- | --- |
+| [Government of Angola, legislation portal](https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o) | Official journal: Diário da República, I Série (Imprensa Nacional), born-digital PDFs | no, the issue as published | The text and its dates, from I Série n.º 154, 16 August 2021 |
+| [Tribunal Constitucional](https://www.tribunalconstitucional.ao) | Official edition: *Constituição da República de Angola, Edição Especial Actualizada* (2022) | no | A word-for-word cross-check only |
 
 ## Licence
 
-See [LICENSE](LICENSE). Texts: Diário da República de Angola (Imprensa Nacional), as published on the Government of Angola's legislation portal; official texts of the Republic of Angola, reproduced with that attribution. Lexifina's arrangement, messages, tables and tools are CC0.
+See [`LICENSE`](LICENSE). The texts are official legal texts of the Republic of Angola from the Diário da República (Imprensa Nacional), reproduced with that attribution; the portal publishes no licence for them. The history, commit messages, tables and tools are CC0 1.0.
 
-This repository is not legal advice.
+No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
 
 ## Em português
 
-Este repositório guarda a história do direito angolano em git: um ficheiro por artigo, um commit por lei na data da sua entrada em vigor, e a lei que alterou o texto como autora do commit. Contém, por agora, a Constituição da República de Angola na republicação oficial de 16 de Agosto de 2021 (Diário da República, I Série, n.º 154), ordenada pela Lei n.º 18/21 — Lei de Revisão Constitucional. A versão original de 2010 só existe como imagem digitalizada e não é transcrita. `python tools/vigente_em.py 2022-01-01 constituicao 109` mostra o artigo 109.º em vigor nessa data, e `git blame constituicao/art-109.md` indica a lei de cada parágrafo. Este repositório não constitui aconselhamento jurídico.
+Este repositório guarda a história do direito angolano em git: um ficheiro por disposição, um commit por versão no dia em que entrou em vigor e, como autor do commit, o ato que fez cada alteração. Contém, por agora, a Constituição da República de Angola na republicação oficial de 16 de Agosto de 2021 (Diário da República, I Série, n.º 154), ordenada pela Lei n.º 18/21; a versão original de 2010 só existe como imagem digitalizada e não é transcrita. `python tools/vigente_em.py 2022-01-01 constituicao 76` mostra o artigo 76.º em vigor nessa data, e `git blame constituicao/art-076.md` indica o ato de cada parágrafo.
+
+## More
+
+From [lexifina/global-law](https://github.com/lexifina/global-law):
+
+- [FEATURES.md](https://github.com/lexifina/global-law/blob/main/FEATURES.md): every feature, and what every corpus must support (`git blame`, `law.py`, the MCP tools)
+- [FAQ.md](https://github.com/lexifina/global-law/blob/main/FAQ.md): questions and answers · [CONTRIBUTING.md](https://github.com/lexifina/global-law/blob/main/CONTRIBUTING.md): proposing changes · [MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md): the MCP server · [REPRODUCE.md](https://github.com/lexifina/global-law/blob/main/REPRODUCE.md): how it was built · [CHANGELOG.md](https://github.com/lexifina/global-law/blob/main/CHANGELOG.md)
+- [FRESHNESS.md](https://github.com/lexifina/global-law/blob/main/FRESHNESS.md): how current each corpus is · [Monitoring](https://github.com/lexifina/global-law/tree/main/monitoring): whether updates are running · [WATCHING.md](https://github.com/lexifina/global-law/blob/main/WATCHING.md): how each official source is watched for changes
+- [performance/](https://github.com/lexifina/global-law/tree/main/performance): how fast the tools are, measured
+- [visualisations/](https://github.com/lexifina/global-law/tree/main/visualisations): charts and bridges across the world's law
+- [Vulnerabilities](https://github.com/lexifina/global-law/tree/main/vulnerabilities): mistakes in legislation as published
