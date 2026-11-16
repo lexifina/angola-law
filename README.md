@@ -59,6 +59,7 @@ A única versão é atribuída ao editor, a Imprensa Nacional (Diário da Repúb
 - `tools/check_repo.py` relê a partir do git cada versão no dia em que entrou em vigor e no dia anterior, e ambas têm de coincidir com o corpus: 0 divergências. Os resultados estão em [`REPRODUCE.md`](REPRODUCE.md).
 - Todos os artigos, o preâmbulo, os anexos e a fórmula de aprovação foram comparados palavra a palavra com a *Edição Especial Actualizada* (2022) do Tribunal Constitucional. Coincidem, salvo em cinco pontos em que as duas edições diferem (artigos 36.º, 42.º, 173.º, 174.º e 242.º); mantém-se a redação do Diário da República, e o `REPRODUCE.md` enumera cada um deles.
 - A história só cresce por acréscimo: sem commits de fusão (merge), sem nenhum commit com data futura, e os trailers de todos os commits são legíveis.
+- [vulnerabilities/](vulnerabilities/): possíveis erros de redação neste direito, encontrados pelos detetores do global-law e verificados à mão. Ainda não executado.
 
 ## O que não mostra
 
@@ -80,6 +81,10 @@ Veja [`LICENSE`](LICENSE). Os textos são textos jurídicos oficiais da Repúbli
 Nenhum modelo de IA escreveu, traduziu ou corrigiu texto jurídico, e nenhum é executado quando a história é construída; os scripts foram escritos por um modelo de IA (veja [`REPRODUCE.md`](REPRODUCE.md)).
 
 Esta é uma tradução da versão inglesa ([README.en.md](README.en.md)); em caso de divergência, prevalece a versão inglesa.
+
+## Visualizações
+
+- [visualisations/](visualisations/): gráficos feitos a partir deste repositório. Ainda não feitos.
 
 ## Mais informação
 

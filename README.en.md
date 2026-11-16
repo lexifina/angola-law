@@ -59,6 +59,7 @@ The one version is credited to the publisher, Imprensa Nacional (Diário da Rep�
 - `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before, and both must match the corpus: 0 mismatches. The results are in [`REPRODUCE.md`](REPRODUCE.md).
 - Every article, the preamble, the annexes and the approval formula were compared word for word with the Tribunal Constitucional's *Edição Especial Actualizada* (2022). They agree apart from five places where the two editions differ (artigos 36.º, 42.º, 173.º, 174.º and 242.º); the Gazette's wording is kept, and `REPRODUCE.md` lists each one.
 - History is append-only: no merge commits, no commit dated in the future, and every commit's trailers parse.
+- [vulnerabilities/](vulnerabilities/README.en.md): possible drafting mistakes in this law, found by global-law's detectors and checked by hand. Not run yet.
 
 ## What it does not show
 
@@ -78,6 +79,10 @@ The one version is credited to the publisher, Imprensa Nacional (Diário da Rep�
 See [`LICENSE`](LICENSE). The texts are official legal texts of the Republic of Angola from the Diário da República (Imprensa Nacional), reproduced with that attribution; the portal publishes no licence for them. The history, commit messages, tables and tools are CC0 1.0.
 
 No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
+
+## Visualisations
+
+- [visualisations/](visualisations/README.en.md): charts drawn from this repository. Not drawn yet.
 
 ## More
 
