@@ -1,35 +1,41 @@
-# Angola: law history in git
+# Angola: a história do direito em git
 
+**Português** · [English](README.en.md)
 
-The law of Angola as a git history: one file per provision, one commit per version on the day it took effect, and the act that made each change as the commit's author. `git blame` names the act behind every paragraph; `git log` lists every change to an article; picking a date gives the text in force that day.
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="data/pt/effort-dark.svg">
+<img alt="O direito angolano neste repositório: o que contém, as alterações por ano de entrada em vigor, a completude face às fontes oficiais e a exatidão do conteúdo" src="data/pt/effort-light.svg" width="880">
+</picture>
 
-Part of [lexifina/global-law](https://github.com/lexifina/global-law), one git history for every country's law: this is Angola's national law, which global-law reads at `angola/national/acts/`.
+O direito de Angola como uma história git: um ficheiro por disposição, um commit por versão no dia em que entrou em vigor e, como autor do commit, o ato que fez cada alteração. `git blame` indica o ato por detrás de cada parágrafo; `git log` lista todas as alterações a um artigo; escolhendo uma data, obtém-se o texto em vigor nesse dia.
 
-**What is in it now:** the Constitution (Constituição da República de Angola), in one version: the official republication of 16 August 2021 ordered by the constitutional revision Lei n.º 18/21, with its articles 1.º to 244.º and the 7 added with a letter (such as 107.º-A), the preamble, the three annexes and the approval formula. [`constituicao/README.md`](constituicao/README.md) lists every provision.
+Faz parte de [lexifina/global-law](https://github.com/lexifina/global-law), uma única história git do direito de todos os países: este é o direito nacional de Angola, que o global-law lê em `angola/national/acts/`.
 
-Each provision is one file in `constituicao/` (`art-076.md` is Article 76, Direito ao trabalho; `art-107-a.md` is Article 107-A); the headings (Título, Capítulo, Secção) are gathered in [`constituicao/estrutura.md`](constituicao/estrutura.md), each naming the article it precedes.
+**O que contém por agora:** a Constituição (Constituição da República de Angola), numa só versão: a republicação oficial de 16 de agosto de 2021 ordenada pela revisão constitucional da Lei n.º 18/21, com os artigos 1.º a 244.º e os 7 aditados com uma letra (como o 107.º-A), o preâmbulo, os três anexos e a fórmula de aprovação. [`constituicao/README.md`](constituicao/README.md) lista todas as disposições.
 
-The text is in Portuguese, as the Diário da República prints it. An English translation is not part of this record.
+Cada disposição é um ficheiro em `constituicao/` (`art-076.md` é o artigo 76.º, Direito ao trabalho; `art-107-a.md` é o artigo 107.º-A); as epígrafes das divisões (Título, Capítulo, Secção) estão reunidas em [`constituicao/estrutura.md`](constituicao/estrutura.md), cada uma com a indicação do artigo que a segue.
 
-## Questions as git commands
+O texto está em português, tal como o Diário da República o publica. Não faz parte deste registo nenhuma tradução inglesa.
 
-| Question | Command |
+## Perguntas como comandos git
+
+| Pergunta | Comando |
 | --- | --- |
-| Every change to Article 76 of the Constitution (the right to work) | `git log -p --word-diff -- constituicao/art-076.md` |
-| Which act wrote each paragraph of Article 76? | `git blame constituicao/art-076.md` |
-| Every version of Article 76, with the day each took effect | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- constituicao/art-076.md` |
-| Article 76 as in force on 1 January 2022 | `python tools/vigente_em.py 2022-01-01 constituicao 76` |
+| Todas as alterações ao artigo 76.º da Constituição (direito ao trabalho) | `git log -p --word-diff -- constituicao/art-076.md` |
+| Que ato escreveu cada parágrafo do artigo 76.º? | `git blame constituicao/art-076.md` |
+| Todas as versões do artigo 76.º, com o dia em que cada uma entrou em vigor | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- constituicao/art-076.md` |
+| O artigo 76.º em vigor em 1 de janeiro de 2022 | `python tools/vigente_em.py 2022-01-01 constituicao 76` |
 
-**Outside git**, we also host this record publicly, for free:
+**Fora do git**, também disponibilizamos este registo publicamente e de forma gratuita:
 
-- **[Ask Claude about Angolan law](https://global-law.lexifina.com/v1/try_claude?country=angola)**: opens Claude with a first question ready.
-- **[Ask ChatGPT](https://global-law.lexifina.com/v1/try_chatgpt?country=angola)**: the same question in ChatGPT.
-- **[Search Angolan law on our site](https://lexifina.com/law?country=angola&q=f%C3%A9rias)**: a search for "férias" (annual leave), with each provision's text and its versions, no account needed.
-- **[Developer REST API](https://global-law.lexifina.com/v1/search_law?query=f%C3%A9rias&jurisdiction=angola)**: the same search as JSON, with no key. See the [documentation here](https://lexifina.com/api/global-law).
+- **[Perguntar ao Claude sobre o direito angolano](https://global-law.lexifina.com/v1/try_claude?country=angola)**: abre o Claude com uma primeira pergunta já preparada.
+- **[Perguntar ao ChatGPT](https://global-law.lexifina.com/v1/try_chatgpt?country=angola)**: a mesma pergunta no ChatGPT.
+- **[Pesquisar o direito angolano no nosso sítio](https://lexifina.com/law?country=angola&q=f%C3%A9rias)**: uma pesquisa por "férias", com o texto de cada disposição e as suas versões, sem necessidade de conta.
+- **[API REST para programadores](https://global-law.lexifina.com/v1/search_law?query=f%C3%A9rias&jurisdiction=angola)**: a mesma pesquisa em JSON, sem chave. Veja a [documentação aqui](https://lexifina.com/api/global-law).
 
-Both assistants read the record through the free Global law connector (MCP, `https://global-law.lexifina.com/mcp`); the first time, the chat gives you the link that adds it. Ask in Portuguese or in English.
+Ambos os assistentes leem o registo através do conector gratuito Global law (MCP, `https://global-law.lexifina.com/mcp`); da primeira vez, a conversa dá-lhe a ligação que o adiciona. Pergunte em português ou em inglês.
 
-**Host it yourself easily.** All it takes is git and Python, and the tools run on your machine:
+**Aloje-o facilmente por conta própria.** Basta ter git e Python, e as ferramentas correm na sua máquina:
 
 ```sh
 git clone --depth 1 https://github.com/lexifina/global-law && cd global-law
@@ -37,53 +43,51 @@ python3 tools/countries.py add angola/national/acts
 python3 tools/law.py show 2026-01-01 angola/national/acts/constituicao/art-076.md
 ```
 
-Opened in Claude Code, Cursor, VS Code or Codex, the clone also starts a local MCP server with the same tools ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
+Aberto no Claude Code, no Cursor, no VS Code ou no Codex, o clone inicia também um servidor MCP local com as mesmas ferramentas ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
 
-## Dates
+## Datas
 
-Each commit is dated at noon, Africa/Luanda, on the day the version took effect, and carries it in its `In-force:` trailer:
+Cada commit tem a data do meio-dia, hora de Africa/Luanda, do dia em que a versão entrou em vigor, e indica-a no seu trailer `In-force:`:
 
-- the day comes from the in-force clause of the law that made the version: Lei n.º 18/21, artigo 6.º, puts the revision in force on its publication, 16 August 2021;
-- `tools/vigente_em.py` picks the version by that trailer, not by the commit date.
+- o dia resulta da norma de entrada em vigor da lei que fez a versão: a Lei n.º 18/21, artigo 6.º, põe a revisão em vigor na data da sua publicação, 16 de agosto de 2021;
+- `tools/vigente_em.py` escolhe a versão por esse trailer, e não pela data do commit.
 
-The one version is credited to the publisher, Imprensa Nacional (Diário da República de Angola), as the oldest version available, and its commit names the Constitution of 2010 and Lei n.º 18/21 as the laws that produced the text. A later change will be credited to the law that made it; the committer is always Lexifina.
+A única versão é atribuída ao editor, a Imprensa Nacional (Diário da República de Angola), como a versão mais antiga disponível, e o seu commit indica a Constituição de 2010 e a Lei n.º 18/21 como as leis que produziram o texto. Uma alteração posterior será atribuída à lei que a fez; o committer é sempre a Lexifina.
 
-## How it is checked
+## Como é verificado
 
-- `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before, and both must match the corpus: 0 mismatches. The results are in [`REPRODUCE.md`](REPRODUCE.md).
-- Every article, the preamble, the annexes and the approval formula were compared word for word with the Tribunal Constitucional's *Edição Especial Actualizada* (2022). They agree apart from five places where the two editions differ (artigos 36.º, 42.º, 173.º, 174.º and 242.º); the Gazette's wording is kept, and `REPRODUCE.md` lists each one.
-- History is append-only: no merge commits, no commit dated in the future, and every commit's trailers parse.
+- `tools/check_repo.py` relê a partir do git cada versão no dia em que entrou em vigor e no dia anterior, e ambas têm de coincidir com o corpus: 0 divergências. Os resultados estão em [`REPRODUCE.md`](REPRODUCE.md).
+- Todos os artigos, o preâmbulo, os anexos e a fórmula de aprovação foram comparados palavra a palavra com a *Edição Especial Actualizada* (2022) do Tribunal Constitucional. Coincidem, salvo em cinco pontos em que as duas edições diferem (artigos 36.º, 42.º, 173.º, 174.º e 242.º); mantém-se a redação do Diário da República, e o `REPRODUCE.md` enumera cada um deles.
+- A história só cresce por acréscimo: sem commits de fusão (merge), sem nenhum commit com data futura, e os trailers de todos os commits são legíveis.
 
-## What it does not show
+## O que não mostra
 
-- **The Constitution of 2010 as first published**, and so the words Lei n.º 18/21 replaced. The Diário da República of 5 February 2010 is available only as a scanned image, which this record does not transcribe, and Lei n.º 18/21 prints only the new wording of the provisions it changes.
-- **Any other act yet.** The Código Penal (Lei n.º 38/20) and the Código do Processo Penal (Lei n.º 39/20) are built on the `preview` branch but held back from `main`: the Código Penal was amended by Lei n.º 12/24, not found with a text layer, and the later history of the Código do Processo Penal is not yet checked. Texts published only as scans, such as the data protection law (Lei n.º 22/11), are not included.
-- **The Gazette's footnotes**, which mark 26 provisions "Alterado", 7 "Aditado" and 6 "Revogado" by Lei n.º 18/21, and the list of constituent legislators printed after the annexes.
+- **A Constituição de 2010 tal como foi publicada pela primeira vez**, e, portanto, as palavras que a Lei n.º 18/21 substituiu. O Diário da República de 5 de fevereiro de 2010 só existe como imagem digitalizada, que este registo não transcreve, e a Lei n.º 18/21 publica apenas a nova redação das disposições que altera.
+- **Nenhum outro ato, por enquanto.** O Código Penal (Lei n.º 38/20) e o Código do Processo Penal (Lei n.º 39/20) estão construídos no ramo `preview`, mas retidos fora do `main`: o Código Penal foi alterado pela Lei n.º 12/24, que não foi encontrada com camada de texto, e a história posterior do Código do Processo Penal ainda não está verificada. Os textos publicados apenas como digitalizações, como a lei de proteção de dados (Lei n.º 22/11), não estão incluídos.
+- **As notas de rodapé do Diário da República**, que assinalam 26 disposições como "Alterado", 7 como "Aditado" e 6 como "Revogado" pela Lei n.º 18/21, e a lista dos legisladores constituintes publicada a seguir aos anexos.
 
-## Sources
+## Fontes
 
-| Source | Kind | Past versions | Notes |
+| Fonte | Tipo | Versões anteriores | Notas |
 | --- | --- | --- | --- |
-| [Government of Angola, legislation portal](https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o) | Official journal: Diário da República, I Série (Imprensa Nacional), born-digital PDFs | no, the issue as published | The text and its dates, from I Série n.º 154, 16 August 2021 |
-| [Tribunal Constitucional](https://www.tribunalconstitucional.ao) | Official edition: *Constituição da República de Angola, Edição Especial Actualizada* (2022) | no | A word-for-word cross-check only |
+| [Governo de Angola, portal de legislação](https://governo.gov.ao/documentos/constitui%C3%A7%C3%A3o) | Jornal oficial: Diário da República, I Série (Imprensa Nacional), PDF nativamente digitais | não, o número tal como publicado | O texto e as suas datas, da I Série n.º 154, de 16 de agosto de 2021 |
+| [Tribunal Constitucional](https://www.tribunalconstitucional.ao) | Edição oficial: *Constituição da República de Angola, Edição Especial Actualizada* (2022) | não | Apenas uma verificação cruzada palavra a palavra |
 
-## Licence
+## Licença
 
-See [`LICENSE`](LICENSE). The texts are official legal texts of the Republic of Angola from the Diário da República (Imprensa Nacional), reproduced with that attribution; the portal publishes no licence for them. The history, commit messages, tables and tools are CC0 1.0.
+Veja [`LICENSE`](LICENSE). Os textos são textos jurídicos oficiais da República de Angola, provenientes do Diário da República (Imprensa Nacional), reproduzidos com essa atribuição; o portal não publica nenhuma licença para eles. A história, as mensagens de commit, as tabelas e as ferramentas estão sob CC0 1.0.
 
-No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
+Nenhum modelo de IA escreveu, traduziu ou corrigiu texto jurídico, e nenhum é executado quando a história é construída; os scripts foram escritos por um modelo de IA (veja [`REPRODUCE.md`](REPRODUCE.md)).
 
-## Em português
+Esta é uma tradução da versão inglesa ([README.en.md](README.en.md)); em caso de divergência, prevalece a versão inglesa.
 
-Este repositório guarda a história do direito angolano em git: um ficheiro por disposição, um commit por versão no dia em que entrou em vigor e, como autor do commit, o ato que fez cada alteração. Contém, por agora, a Constituição da República de Angola na republicação oficial de 16 de Agosto de 2021 (Diário da República, I Série, n.º 154), ordenada pela Lei n.º 18/21; a versão original de 2010 só existe como imagem digitalizada e não é transcrita. `python tools/vigente_em.py 2022-01-01 constituicao 76` mostra o artigo 76.º em vigor nessa data, e `git blame constituicao/art-076.md` indica o ato de cada parágrafo.
+## Mais informação
 
-## More
+Do repositório [lexifina/global-law](https://github.com/lexifina/global-law) (páginas em inglês):
 
-From [lexifina/global-law](https://github.com/lexifina/global-law):
-
-- [FEATURES.md](https://github.com/lexifina/global-law/blob/main/FEATURES.md): every feature, and what every corpus must support (`git blame`, `law.py`, the MCP tools)
-- [FAQ.md](https://github.com/lexifina/global-law/blob/main/FAQ.md): questions and answers · [CONTRIBUTING.md](https://github.com/lexifina/global-law/blob/main/CONTRIBUTING.md): proposing changes · [MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md): the MCP server · [REPRODUCE.md](https://github.com/lexifina/global-law/blob/main/REPRODUCE.md): how it was built · [CHANGELOG.md](https://github.com/lexifina/global-law/blob/main/CHANGELOG.md)
-- [FRESHNESS.md](https://github.com/lexifina/global-law/blob/main/FRESHNESS.md): how current each corpus is · [Monitoring](https://github.com/lexifina/global-law/tree/main/monitoring): whether updates are running · [WATCHING.md](https://github.com/lexifina/global-law/blob/main/WATCHING.md): how each official source is watched for changes
-- [performance/](https://github.com/lexifina/global-law/tree/main/performance): how fast the tools are, measured
-- [visualisations/](https://github.com/lexifina/global-law/tree/main/visualisations): charts and bridges across the world's law
-- [Vulnerabilities](https://github.com/lexifina/global-law/tree/main/vulnerabilities): mistakes in legislation as published
+- [FEATURES.md](https://github.com/lexifina/global-law/blob/main/FEATURES.md): todas as funcionalidades e o que cada corpus tem de suportar (`git blame`, `law.py`, ferramentas MCP)
+- [FAQ.md](https://github.com/lexifina/global-law/blob/main/FAQ.md): perguntas e respostas · [CONTRIBUTING.md](https://github.com/lexifina/global-law/blob/main/CONTRIBUTING.md): propor alterações · [MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md): servidor MCP · [REPRODUCE.md](https://github.com/lexifina/global-law/blob/main/REPRODUCE.md): como foi construído · [CHANGELOG.md](https://github.com/lexifina/global-law/blob/main/CHANGELOG.md)
+- [FRESHNESS.md](https://github.com/lexifina/global-law/blob/main/FRESHNESS.md): quão atualizado está cada corpus · [Monitorização](https://github.com/lexifina/global-law/tree/main/monitoring): se as atualizações estão a funcionar · [WATCHING.md](https://github.com/lexifina/global-law/blob/main/WATCHING.md): como cada fonte oficial é vigiada para detetar alterações
+- [performance/](https://github.com/lexifina/global-law/tree/main/performance): a rapidez das ferramentas, medida
+- [visualisations/](https://github.com/lexifina/global-law/tree/main/visualisations): gráficos e ligações através do direito de todo o mundo
+- [Vulnerabilidades](https://github.com/lexifina/global-law/tree/main/vulnerabilities): erros nos diplomas tal como foram publicados
